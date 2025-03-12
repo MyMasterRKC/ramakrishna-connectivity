@@ -6,6 +6,7 @@ interface User {
   id: string;
   name: string;
   email: string;
+  // You can add more user properties here when connecting to a real API
 }
 
 interface UserContextType {
@@ -13,13 +14,15 @@ interface UserContextType {
   login: (email: string, password: string) => Promise<void>;
   signup: (name: string, email: string, password: string) => Promise<void>;
   logout: () => void;
+  isLoading: boolean;
 }
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
-// Mock implementation for demo purposes
+// Modified implementation to make it easier to connect to a real API
 export const UserProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     // Check for user in localStorage on initial load
@@ -32,48 +35,60 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
         localStorage.removeItem("user");
       }
     }
+    setIsLoading(false);
   }, []);
 
+  // This login function could be replaced with a real API call
   const login = async (email: string, password: string) => {
-    // This is a mock implementation - in a real app, you would call an API
-    return new Promise<void>((resolve, reject) => {
-      setTimeout(() => {
-        // Simple validation for demo
-        if (email && password.length >= 6) {
-          const newUser = {
-            id: `user-${Date.now()}`,
-            name: email.split('@')[0], // Use part of email as name if not known
-            email,
-          };
-          setUser(newUser);
-          localStorage.setItem("user", JSON.stringify(newUser));
-          resolve();
-        } else {
-          reject(new Error("Invalid credentials"));
-        }
-      }, 1000);
-    });
+    setIsLoading(true);
+    
+    try {
+      // Mock API call - replace with actual API call when ready
+      // Example: const response = await fetch('/api/login', { method: 'POST', body: JSON.stringify({ email, password }) });
+      
+      // Simulate API delay
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Simple validation for demo
+      if (email && password.length >= 6) {
+        const newUser = {
+          id: `user-${Date.now()}`,
+          name: email.split('@')[0], // Use part of email as name if not known
+          email,
+        };
+        setUser(newUser);
+        localStorage.setItem("user", JSON.stringify(newUser));
+        return;
+      } else {
+        throw new Error("Invalid credentials");
+      }
+    } finally {
+      setIsLoading(false);
+    }
   };
 
+  // This signup function could be replaced with a real API call
   const signup = async (name: string, email: string, password: string) => {
-    // This is a mock implementation - in a real app, you would call an API
-    return new Promise<void>((resolve, reject) => {
-      setTimeout(() => {
-        // Simple validation for demo
-        if (name && email && password.length >= 6) {
-          const newUser = {
-            id: `user-${Date.now()}`,
-            name,
-            email,
-          };
-          // In a real implementation, we'd store the user in a database
-          // For this demo, we'll just simulate success
-          resolve();
-        } else {
-          reject(new Error("Invalid signup data"));
-        }
-      }, 1000);
-    });
+    setIsLoading(true);
+    
+    try {
+      // Mock API call - replace with actual API call when ready
+      // Example: const response = await fetch('/api/signup', { method: 'POST', body: JSON.stringify({ name, email, password }) });
+      
+      // Simulate API delay
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Simple validation for demo
+      if (name && email && password.length >= 6) {
+        // In a real implementation, we'd store the user in a database
+        // For this demo, just simulate success
+        return;
+      } else {
+        throw new Error("Invalid signup data");
+      }
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const logout = () => {
@@ -82,7 +97,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <UserContext.Provider value={{ user, login, signup, logout }}>
+    <UserContext.Provider value={{ user, login, signup, logout, isLoading }}>
       {children}
     </UserContext.Provider>
   );

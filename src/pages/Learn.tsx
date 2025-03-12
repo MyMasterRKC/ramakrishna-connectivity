@@ -2,7 +2,6 @@ import { useState } from "react";
 import Layout from "@/components/Layout";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Button } from "@/components/ui/button";
 import { BookOpen, Users, GraduationCap, BookOpenCheck } from "lucide-react";
 import { useUser } from "@/hooks/useUser";
 import QuizSelector from "@/components/quiz/QuizSelector";
@@ -15,10 +14,6 @@ const Learn = () => {
   const { user } = useUser();
 
   const handleQuizSelect = (quizId: string) => {
-    if (!user) {
-      setAuthModalOpen(true);
-      return;
-    }
     setSelectedQuiz(quizId);
   };
 
@@ -213,7 +208,7 @@ const Learn = () => {
             <div className="w-24 h-1 bg-gradient-to-r from-orange-400 to-orange-600 mx-auto"></div>
             <p className="mt-4 text-gray-600 max-w-3xl mx-auto">
               Test your knowledge about the Holy Trinity and track your progress.
-              {!user && " Login to save your quiz results and track your learning journey."}
+              {!user && " Login to save your quiz results and access all quizzes."}
             </p>
           </div>
 
@@ -227,7 +222,8 @@ const Learn = () => {
                 </div>
                 <h3 className="text-2xl font-semibold text-gray-800 mb-2">Knowledge Assessment</h3>
                 <p className="text-center text-gray-600 max-w-xl">
-                  Challenge yourself with these quizzes to deepen your understanding of the Holy Trinity's teachings and philosophies.
+                  Some quizzes are available for everyone, while others require login to access. 
+                  Challenge yourself to deepen your understanding of the Holy Trinity.
                 </p>
               </div>
               <QuizSelector onSelectQuiz={handleQuizSelect} />
