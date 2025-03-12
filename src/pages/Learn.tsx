@@ -1,10 +1,27 @@
-
+import { useState } from "react";
 import Layout from "@/components/Layout";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { BookOpen, Users, GraduationCap } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { BookOpen, Users, GraduationCap, BookOpenCheck } from "lucide-react";
+import { useUser } from "@/hooks/useUser";
+import QuizSelector from "@/components/quiz/QuizSelector";
+import Quiz from "@/components/quiz/Quiz";
+import AuthModal from "@/components/auth/AuthModal";
 
 const Learn = () => {
+  const [selectedQuiz, setSelectedQuiz] = useState<string | null>(null);
+  const [authModalOpen, setAuthModalOpen] = useState(false);
+  const { user } = useUser();
+
+  const handleQuizSelect = (quizId: string) => {
+    if (!user) {
+      setAuthModalOpen(true);
+      return;
+    }
+    setSelectedQuiz(quizId);
+  };
+
   return (
     <Layout>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -189,6 +206,35 @@ const Learn = () => {
           </Tabs>
         </section>
 
+        {/* Quiz Section */}
+        <section className="mb-16">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-bold text-gray-800 mb-4">Quiz & Assessment</h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-orange-400 to-orange-600 mx-auto"></div>
+            <p className="mt-4 text-gray-600 max-w-3xl mx-auto">
+              Test your knowledge about the Holy Trinity and track your progress.
+              {!user && " Login to save your quiz results and track your learning journey."}
+            </p>
+          </div>
+
+          {selectedQuiz ? (
+            <Quiz quizId={selectedQuiz} onBack={() => setSelectedQuiz(null)} />
+          ) : (
+            <div className="animate-fade-in">
+              <div className="flex flex-col items-center justify-center mb-8">
+                <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-4">
+                  <BookOpenCheck className="h-8 w-8 text-orange-600" />
+                </div>
+                <h3 className="text-2xl font-semibold text-gray-800 mb-2">Knowledge Assessment</h3>
+                <p className="text-center text-gray-600 max-w-xl">
+                  Challenge yourself with these quizzes to deepen your understanding of the Holy Trinity's teachings and philosophies.
+                </p>
+              </div>
+              <QuizSelector onSelectQuiz={handleQuizSelect} />
+            </div>
+          )}
+        </section>
+
         {/* Resources Section */}
         <section>
           <div className="text-center mb-10">
@@ -259,6 +305,11 @@ const Learn = () => {
           </div>
         </section>
       </div>
+      
+      <AuthModal 
+        isOpen={authModalOpen} 
+        onClose={() => setAuthModalOpen(false)} 
+      />
     </Layout>
   );
 };

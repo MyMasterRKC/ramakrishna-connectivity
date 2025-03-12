@@ -4,6 +4,7 @@ import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
+import UserMenu from "./auth/UserMenu";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,17 +17,17 @@ const Navbar = () => {
     <nav className="bg-white shadow-md sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20">
-          <div className="flex items-center">
-            <Link to="/" className="flex-shrink-0">
+          <div className="flex-shrink-0 flex items-center">
+            <Link to="/" className="block h-16">
               <img
-                className="h-16 w-auto"
+                className="h-full w-auto"
                 src="/lovable-uploads/a16f0080-9b90-4185-8528-c8db463d33b4.png"
                 alt="Ramakrishna Centre Logo"
               />
             </Link>
           </div>
           
-          {/* Desktop menu */}
+          {/* Desktop menu - pushed to the right */}
           <div className="hidden md:flex md:items-center md:space-x-4">
             <Link to="/" className="text-gray-700 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">Home</Link>
             <Link to="/about" className="text-gray-700 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">About</Link>
@@ -35,7 +36,10 @@ const Navbar = () => {
             <Link to="/development" className="text-gray-700 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">New Ashram</Link>
             <Link to="/learn" className="text-gray-700 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">Learn</Link>
             <Link to="/contact" className="text-gray-700 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">Contact</Link>
-            <Button variant="default" className="ml-4 bg-orange-600 hover:bg-orange-700 transition-colors duration-300">Donate</Button>
+            <div className="ml-4 flex items-center space-x-4">
+              <Button variant="default" className="bg-orange-600 hover:bg-orange-700 transition-colors duration-300">Donate</Button>
+              <UserMenu />
+            </div>
           </div>
           
           {/* Mobile menu button */}
@@ -102,7 +106,12 @@ const Navbar = () => {
           >
             Contact
           </Link>
-          <Button variant="default" className="w-full bg-orange-600 hover:bg-orange-700 mt-4 transition-colors duration-300">Donate</Button>
+          <div className="pt-2 pb-1">
+            <Button variant="default" className="w-full bg-orange-600 hover:bg-orange-700 mt-2 mb-2 transition-colors duration-300">Donate</Button>
+            <div className="flex justify-center">
+              <UserMenu />
+            </div>
+          </div>
         </div>
       </div>
     </nav>
