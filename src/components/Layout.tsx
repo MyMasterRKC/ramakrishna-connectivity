@@ -9,7 +9,7 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-white bg-[radial-gradient(circle,_rgba(255,166,76,0.05)_1px,_transparent_1px)] bg-[size:20px_20px]">
       <Navbar />
       <main className="flex-grow animate-fade-in">
         {children}
