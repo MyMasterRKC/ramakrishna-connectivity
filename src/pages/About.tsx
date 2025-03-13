@@ -1,4 +1,3 @@
-
 import Layout from "@/components/Layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { Flower, Flower2, Sun, Mountain } from "lucide-react";
@@ -7,7 +6,7 @@ const About = () => {
   return (
     <Layout>
       {/* Hero Section with Indian-inspired design */}
-      <section className="bg-gradient-to-r from-orange-100 to-amber-100 py-20 relative overflow-hidden">
+      <section className="bg-gradient-to-r from-orange-200 to-amber-100 py-20 relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full opacity-10">
           <div className="absolute top-10 left-10">
             <Flower className="text-orange-500 h-20 w-20" />
@@ -32,7 +31,7 @@ const About = () => {
       </section>
       
       {/* Main Content */}
-      <section className="py-16 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgdmlld0JveD0iMCAwIDYwIDYwIj48ZyBmaWxsPSJub25lIj48cGF0aCBkPSJNMzYgMzRjMCAxLjEtLjkgMi0yIDJzLTItLjktMi0yIC45LTIgMi0yIDIgLjkgMiAyem0tOC0xNGMwIDEuMS0uOSAyLTIgMnMtMi0uOS0yLTIgLjktMiAyLTIgMiAuOSAyIDJ6bS0xNiA2YzAgMS4xLS45IDItMiAycy0yLS45LTItMiAuOS0yIDItMiAyIC45IDIgMnptLTggMjJjMCAxLjEtLjkgMi0yIDJzLTItLjktMi0yIC45LTIgMi0yIDIgLjkgMiAyem0wLTQwYzAgMS4xLS45IDItMiAycy0yLS45LTItMiAuOS0yIDItMiAyIC45IDIgMnptNDAtOGMwIDEuMS0uOSAyLTIgMnMtMi0uOS0yLTIgLjktMiAyLTIgMiAuOSAyIDJ6bTI0IDQwYzAgMS4xLS45IDItMiAycy0yLS45LTItMiAuOS0yIDItMiAyIC45IDIgMnptLTQwIDBjMCAxLjEtLjkgMi0yIDJzLTItLjktMi0yIC45LTIgMi0yIDIgLjkgMiAyem0yNC0yNGMwIDEuMS0uOSAyLTIgMnMtMi0uOS0yLTIgLjktMiAyLTIgMiAuOSAyIDJ6Ii8+PHBhdGggZmlsbD0iI0ZGRTVCNCIgZD0iTTQgMGg0djRoLTR6bTUyIDBoNHY0aC00ek00IDU2aDR2NGgtNHptNTIgMGg0djRoLTR6bS01MiAwaDR2NGgtNHptNTIgMGg0djRoLTR6bS01Mi01Nmg0djRoLTR6bTUyIDBoNHY0aC00eiIvPjwvZz48L3N2Zz4=')] bg-opacity-5">
+      <section className="py-16 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgdmlld0JveD0iMCAwIDYwIDYwIj48ZyBmaWxsPSJub25lIj48cGF0aCBkPSJNMzAgNTJjMSAwIDEuOC0uOCAyLjgtMS4xIDEuMi0uNCAyLjQtLjQgMy40LS45czEuOS0xLjUgMy0xLjljMS4yLS40IDIuNC0uMyAzLjYtLjQgMS4yLS4xIDIuMy0uNyAzLjUtLjkgMS40LS4yIDIuOC4yIDQuMi4zLjcuMSAxLjQuMiAyLjEuNGwxLjEuM2MxLjMuMiAyLjYtLjEgMy45LS4yaC4xYy0uMyAxLjEtLjkgMi0xLjUgMi45LS43IDEtMS42IDItMi43IDIuNi0xLjEuNi0yLjQgMS0zLjcgMS4xLTEuMi4xLTIuNC0uMS0zLjYtLjEtMS4yIDAtMi4zLjMtMy41LjQtMS4xLjEtMi4yLjEtMy4zLjEtMS4xIDAtMi4yLS4xLTMuMy0uMy0xLjEtLjItMi4yLS41LTMuMy0uNy0xLjEtLjItMi4zLS4yLTMuNC0uMi0xLjEgMC0yLjEtLjQtMy4xLS43LS45LS4zLTEuOC0uNi0yLjYtMS0uOC0uNC0xLjYtLjgtMi4zLTEuMy0uNy0uNS0xLjQtMS0yLTEuNi0uNi0uNS0xLjEtMS4xLTEuNi0xLjctLjQtLjUtLjgtMS4xLTEuMi0xLjctLjMtLjUtLjYtMS0uOC0xLjYtLjItLjUtLjQtLjktLjUtMS40LS4xLS41LS4yLS45LS4zLTEuNCAwIC0uMiAwIC0uNCAwIC0uNi4yLjMuNC43LjYgMSAuNC43LjkgMS4zIDEuNSAxLjkuNi42IDEuMiAxLjEgMS45IDEuNS43LjQgMS40LjcgMi4yLjkuOC4yIDEuNi4zIDIuNC4yLjggMCAxLjYtLjIgMi40LS40LjgtLjIgMS41LS41IDIuMy0uOC44LS4zIDEuNS0uNyAyLjMtLjkuOC0uMiAxLjYtLjMgMi40LS4zLjggMCAxLjYuMiAyLjQgMCAuNCAwIC44LS4yIDEuMy0uM3oiLz48L2c+PC9zdmc+')]  bg-opacity-5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
             <div>

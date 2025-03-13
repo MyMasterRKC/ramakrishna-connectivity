@@ -1,4 +1,3 @@
-
 import Layout from "@/components/Layout";
 import { Flower, Flower2, Sun } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -7,7 +6,7 @@ const HolyTrinity = () => {
   return (
     <Layout>
       {/* Hero Section with Indian-inspired design */}
-      <section className="bg-gradient-to-r from-orange-100 to-amber-50 py-20 relative overflow-hidden">
+      <section className="bg-gradient-to-r from-orange-200 to-amber-100 py-20 relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full opacity-10">
           <div className="absolute top-5 left-5 transform -rotate-12">
             <Flower className="text-orange-500 h-24 w-24" />

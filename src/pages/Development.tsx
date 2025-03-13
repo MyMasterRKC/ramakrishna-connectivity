@@ -1,4 +1,3 @@
-
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -18,7 +17,7 @@ const Development = () => {
       </section>
       
       {/* Vision Section */}
-      <section className="py-16">
+      <section className="py-16 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgdmlld0JveD0iMCAwIDYwIDYwIj48ZyBmaWxsPSJub25lIj48cGF0aCBmaWxsPSIjRkZFNUI0IiBkPSJNMzAgNTJjMSAwIDEuOC0uOCAyLjgtMS4xIDEuMi0uNCAyLjQtLjQgMy40LS45czEuOS0xLjUgMy0xLjljMS4yLS40IDIuNC0uMyAzLjYtLjQgMS4yLS4xIDIuMy0uNyAzLjUtLjkgMS40LS4yIDIuOC4yIDQuMi4zLjcuMSAxLjQuMiAyLjEuNGwxLjEuM2MxLjMuMiAyLjYtLjEgMy45LS4yaC4xYy0uMyAxLjEtLjkgMi0xLjUgMi45LS43IDEtMS42IDItMi43IDIuNi0xLjEuNi0yLjQgMS0zLjcgMS4xLTEuMi4xLTIuNC0uMS0zLjYtLjEtMS4yIDAtMi4zLjMtMy41LjQtMS4xLjEtMi4yLjEtMy4zLjEtMS4xIDAtMi4yLS4xLTMuMy0uMy0xLjEtLjItMi4yLS41LTMuMy0uNy0xLjEtLjItMi4zLS4yLTMuNC0uMi0xLjEgMC0yLjEtLjQtMy4xLS43LS45LS4zLTEuOC0uNi0yLjYtMS0uOC0uNC0xLjYtLjgtMi4zLTEuMy0uNy0uNS0xLjQtMS0yLTEuNi0uNi0uNS0xLjEtMS4xLTEuNi0xLjctLjQtLjUtLjgtMS4xLTEuMi0xLjctLjMtLjUtLjYtMS0uOC0xLjYtLjItLjUtLjQtLjktLjUtMS40LS4xLS41LS4yLS45LS4zLTEuNCAwIC0uMiAwIC0uNCAwIC0uNi4yLjMuNC43LjYgMSAuNC43LjkgMS4zIDEuNSAxLjkuNi42IDEuMiAxLjEgMS45IDEuNS43LjQgMS40LjcgMi4yLjkuOC4yIDEuNi4zIDIuNC4yLjggMCAxLjYtLjIgMi40LS40LjgtLjIgMS41LS41IDIuMy0uOC44LS4zIDEuNS0uNyAyLjMtLjkuOC0uMiAxLjYtLjMgMi40LS4zLjggMCAxLjYuMiAyLjQgMCAuNCAwIC44LS4yIDEuMy0uM3oiLz48L2c+PC9zdmc+')]  bg-opacity-5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-800 mb-4">Our Vision</h2>
@@ -52,7 +51,7 @@ const Development = () => {
       </section>
       
       {/* Features Section */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-orange-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-800 mb-4">Planned Facilities</h2>
@@ -180,147 +179,4 @@ const Development = () => {
       </section>
       
       {/* Timeline Section */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">Development Timeline</h2>
-            <p className="text-gray-600 max-w-3xl mx-auto">
-              Our journey towards building the new ashram is progressing through several planned phases.
-            </p>
-          </div>
-          
-          <div className="relative">
-            {/* Timeline Line */}
-            <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-orange-200"></div>
-            
-            <div className="space-y-12 md:space-y-0">
-              {/* Phase 1 */}
-              <div className="md:grid md:grid-cols-2 md:gap-8 md:items-center">
-                <div className="md:text-right mb-6 md:mb-0">
-                  <h3 className="text-xl font-semibold text-gray-800 mb-2">Phase 1: Planning & Design</h3>
-                  <p className="text-gray-600">Development of architectural plans, obtaining necessary permits, and finalizing the design of the ashram.</p>
-                </div>
-                <div className="relative">
-                  {/* Timeline Dot */}
-                  <div className="hidden md:block absolute -left-4 md:left-0 top-1/2 transform -translate-y-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-orange-500 border-4 border-white shadow"></div>
-                  <div className="ml-0 md:ml-12">
-                    <div className="bg-white p-6 rounded-lg shadow-md">
-                      <p className="text-orange-600 font-semibold">Current Stage</p>
-                      <p className="text-gray-600 mt-2">We are currently working with architects to finalize the design that reflects our spiritual and practical needs.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Phase 2 */}
-              <div className="md:grid md:grid-cols-2 md:gap-8 md:items-center">
-                <div className="order-2 md:order-1 relative">
-                  {/* Timeline Dot */}
-                  <div className="hidden md:block absolute -left-4 md:left-0 top-1/2 transform -translate-y-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-gray-300 border-4 border-white shadow"></div>
-                  <div className="ml-0 md:ml-12">
-                    <div className="bg-white p-6 rounded-lg shadow-md">
-                      <p className="text-gray-600 font-semibold">Upcoming</p>
-                      <p className="text-gray-600 mt-2">Fundraising campaigns and events to gather resources for the construction of the ashram.</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="order-1 md:order-2 mb-6 md:mb-0">
-                  <h3 className="text-xl font-semibold text-gray-800 mb-2 md:text-left">Phase 2: Fundraising</h3>
-                  <p className="text-gray-600 md:text-left">Mobilizing financial resources through donations, grants, and community support for the construction.</p>
-                </div>
-              </div>
-              
-              {/* Phase 3 */}
-              <div className="md:grid md:grid-cols-2 md:gap-8 md:items-center">
-                <div className="md:text-right mb-6 md:mb-0">
-                  <h3 className="text-xl font-semibold text-gray-800 mb-2">Phase 3: Construction</h3>
-                  <p className="text-gray-600">Breaking ground and building the physical structure of the ashram according to the approved plans.</p>
-                </div>
-                <div className="relative">
-                  {/* Timeline Dot */}
-                  <div className="hidden md:block absolute -left-4 md:left-0 top-1/2 transform -translate-y-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-gray-300 border-4 border-white shadow"></div>
-                  <div className="ml-0 md:ml-12">
-                    <div className="bg-white p-6 rounded-lg shadow-md">
-                      <p className="text-gray-600 font-semibold">Future Stage</p>
-                      <p className="text-gray-600 mt-2">The construction phase will be carried out in multiple sub-phases, beginning with the temple and main buildings.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Phase 4 */}
-              <div className="md:grid md:grid-cols-2 md:gap-8 md:items-center">
-                <div className="order-2 md:order-1 relative">
-                  {/* Timeline Dot */}
-                  <div className="hidden md:block absolute -left-4 md:left-0 top-1/2 transform -translate-y-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-gray-300 border-4 border-white shadow"></div>
-                  <div className="ml-0 md:ml-12">
-                    <div className="bg-white p-6 rounded-lg shadow-md">
-                      <p className="text-gray-600 font-semibold">Future Stage</p>
-                      <p className="text-gray-600 mt-2">The grand opening of the ashram will be celebrated with special ceremonies and community events.</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="order-1 md:order-2 mb-6 md:mb-0">
-                  <h3 className="text-xl font-semibold text-gray-800 mb-2 md:text-left">Phase 4: Completion & Inauguration</h3>
-                  <p className="text-gray-600 md:text-left">Finalizing construction, setting up facilities, and officially inaugurating the new ashram.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      
-      {/* Support Section */}
-      <section className="py-16 bg-orange-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">Support the Development</h2>
-            <p className="text-gray-600 max-w-3xl mx-auto">
-              Your generous contribution will help us build a spiritual sanctuary that will serve generations to come. There are many ways you can support this noble cause.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="hover:shadow-lg transition-shadow duration-300">
-              <CardContent className="pt-6">
-                <h3 className="text-xl font-semibold mb-4 text-center">Financial Donations</h3>
-                <p className="text-gray-600 mb-6 text-center">
-                  Contribute financially to support the construction of the new ashram. Every donation, big or small, brings us closer to our goal.
-                </p>
-                <div className="flex justify-center">
-                  <Button variant="default">Donate Now</Button>
-                </div>
-              </CardContent>
-            </Card>
-            
-            <Card className="hover:shadow-lg transition-shadow duration-300">
-              <CardContent className="pt-6">
-                <h3 className="text-xl font-semibold mb-4 text-center">Volunteer Your Time</h3>
-                <p className="text-gray-600 mb-6 text-center">
-                  Offer your skills, expertise, or time to assist with various aspects of the development project.
-                </p>
-                <div className="flex justify-center">
-                  <Button variant="outline">Register as Volunteer</Button>
-                </div>
-              </CardContent>
-            </Card>
-            
-            <Card className="hover:shadow-lg transition-shadow duration-300">
-              <CardContent className="pt-6">
-                <h3 className="text-xl font-semibold mb-4 text-center">Spread the Word</h3>
-                <p className="text-gray-600 mb-6 text-center">
-                  Help us by spreading awareness about the project within your network and community.
-                </p>
-                <div className="flex justify-center">
-                  <Button variant="outline">Share the Project</Button>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-    </Layout>
-  );
-};
-
-export default Development;
+      <section className="py-16 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgdmlld0JveD0iMCAwIDYwIDYwIj48ZyBmaWxsPSJub25lIj48cGF0aCBmaWxsPSIjRkZFNUI0IiBkPSJNMzAgNTJjMSAwIDEuOC0uOCAyLjgtMS4xIDEuMi0uNCAyLjQtLjQgMy40LS45czEuOS0xLjUgMy0xLjljMS4yLS40IDIuNC0uMyAzLjYtLjQgMS4yLS4xIDIuMy0uNyAzLjUtLjkgMS40LS4yIDIuOC4yIDQuMi4zLjcuMSAxLjQuMiAyLjEuNGwxLjEuM2MxLjMuMiAyLjYtLjEgMy45LS4yaC4xYy0uMyAxLjEtLjkgMi0xLjUgMi45LS43IDEtMS42IDItMi43IDIuNi0xLjEuNi0yLjQgMS0zLjcgMS4xLTEuMi4xLTIuNC0uMS0zLjYtLjEtMS4yIDAtMi4zLjMtMy
