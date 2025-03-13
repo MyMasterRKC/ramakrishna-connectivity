@@ -189,40 +189,78 @@ const Development = () => {
             </p>
           </div>
           
-          <div className="space-y-8">
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-semibold text-orange-600 mb-2">Phase 1: Land Acquisition</h3>
-              <p className="text-gray-700">
-                Securing suitable land in a peaceful location with good accessibility for our community.
-              </p>
+          <div className="relative">
+            {/* Timeline Line */}
+            <div className="absolute h-full w-1 bg-orange-400 left-1/2 transform -translate-x-1/2"></div>
+            
+            {/* Phase 1 */}
+            <div className="relative mb-16">
+              <div className="flex items-center justify-center mb-4">
+                <div className="w-10 h-10 bg-orange-600 rounded-full text-white flex items-center justify-center font-bold z-10">1</div>
+              </div>
+              <div className="bg-white p-6 rounded-lg shadow-md ml-0 md:ml-auto md:mr-auto md:w-5/12 relative">
+                <div className="hidden md:block absolute top-1/2 -translate-y-1/2 -left-12 w-12 h-1 bg-orange-400"></div>
+                <h3 className="text-xl font-semibold text-orange-600 mb-2">Phase 1: Land Acquisition</h3>
+                <p className="text-gray-700">
+                  Securing suitable land in a peaceful location with good accessibility for our community.
+                </p>
+              </div>
             </div>
             
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-semibold text-orange-600 mb-2">Phase 2: Design & Planning</h3>
-              <p className="text-gray-700">
-                Working with architects and engineers to create designs that reflect our spiritual values and meet practical needs.
-              </p>
+            {/* Phase 2 */}
+            <div className="relative mb-16">
+              <div className="flex items-center justify-center mb-4">
+                <div className="w-10 h-10 bg-orange-600 rounded-full text-white flex items-center justify-center font-bold z-10">2</div>
+              </div>
+              <div className="bg-white p-6 rounded-lg shadow-md mr-0 md:mr-auto md:ml-auto md:w-5/12 relative">
+                <div className="hidden md:block absolute top-1/2 -translate-y-1/2 -right-12 w-12 h-1 bg-orange-400"></div>
+                <h3 className="text-xl font-semibold text-orange-600 mb-2">Phase 2: Design & Planning</h3>
+                <p className="text-gray-700">
+                  Working with architects and engineers to create designs that reflect our spiritual values and meet practical needs.
+                </p>
+              </div>
             </div>
             
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-semibold text-orange-600 mb-2">Phase 3: Fundraising Campaign</h3>
-              <p className="text-gray-700">
-                Engaging with our community and supporters to raise the resources needed for construction.
-              </p>
+            {/* Phase 3 */}
+            <div className="relative mb-16">
+              <div className="flex items-center justify-center mb-4">
+                <div className="w-10 h-10 bg-orange-600 rounded-full text-white flex items-center justify-center font-bold z-10">3</div>
+              </div>
+              <div className="bg-white p-6 rounded-lg shadow-md ml-0 md:ml-auto md:mr-auto md:w-5/12 relative">
+                <div className="hidden md:block absolute top-1/2 -translate-y-1/2 -left-12 w-12 h-1 bg-orange-400"></div>
+                <h3 className="text-xl font-semibold text-orange-600 mb-2">Phase 3: Fundraising Campaign</h3>
+                <p className="text-gray-700">
+                  Engaging with our community and supporters to raise the resources needed for construction.
+                </p>
+              </div>
             </div>
             
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-semibold text-orange-600 mb-2">Phase 4: Construction</h3>
-              <p className="text-gray-700">
-                Building the ashram facilities in stages, beginning with the temple and essential infrastructure.
-              </p>
+            {/* Phase 4 */}
+            <div className="relative mb-16">
+              <div className="flex items-center justify-center mb-4">
+                <div className="w-10 h-10 bg-orange-600 rounded-full text-white flex items-center justify-center font-bold z-10">4</div>
+              </div>
+              <div className="bg-white p-6 rounded-lg shadow-md mr-0 md:mr-auto md:ml-auto md:w-5/12 relative">
+                <div className="hidden md:block absolute top-1/2 -translate-y-1/2 -right-12 w-12 h-1 bg-orange-400"></div>
+                <h3 className="text-xl font-semibold text-orange-600 mb-2">Phase 4: Construction</h3>
+                <p className="text-gray-700">
+                  Building the ashram facilities in stages, beginning with the temple and essential infrastructure.
+                </p>
+              </div>
             </div>
             
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-semibold text-orange-600 mb-2">Phase 5: Opening & Dedication</h3>
-              <p className="text-gray-700">
-                Celebrating the opening of our new spiritual home with special ceremonies and community events.
-              </p>
+            {/* Phase 5 */}
+            <div className="relative">
+              <div className="flex items-center justify-center mb-4">
+                <div className="w-10 h-10 bg-orange-600 rounded-full text-white flex items-center justify-center font-bold z-10">5</div>
+              </div>
+              <div className="bg-white p-6 rounded-lg shadow-md ml-0 md:ml-auto md:mr-auto md:w-5/12 relative">
+                <div className="hidden md:block absolute top-1/2 -translate-y-1/2 -left-12 w-12 h-1 bg-orange-400"></div>
+                <h3 className="text-xl font-semibold text-orange-600 mb-2">Phase 5: Opening & Dedication</h3>
+                <p className="text-gray-700">
+                  Celebrating the opening of our new spiritual home with special ceremonies and community events.
+                </p>
+              </div>
             </div>
           </div>
         </div>
