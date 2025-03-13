@@ -1,3 +1,4 @@
+
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -17,7 +18,7 @@ const Development = () => {
       </section>
       
       {/* Vision Section */}
-      <section className="py-16 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgdmlld0JveD0iMCAwIDYwIDYwIj48ZyBmaWxsPSJub25lIj48cGF0aCBmaWxsPSIjRkZFNUI0IiBkPSJNMzAgNTJjMSAwIDEuOC0uOCAyLjgtMS4xIDEuMi0uNCAyLjQtLjQgMy40LS45czEuOS0xLjUgMy0xLjljMS4yLS40IDIuNC0uMyAzLjYtLjQgMS4yLS4xIDIuMy0uNyAzLjUtLjkgMS40LS4yIDIuOC4yIDQuMi4zLjcuMSAxLjQuMiAyLjEuNGwxLjEuM2MxLjMuMiAyLjYtLjEgMy45LS4yaC4xYy0uMyAxLjEtLjkgMi0xLjUgMi45LS43IDEtMS42IDItMi43IDIuNi0xLjEuNi0yLjQgMS0zLjcgMS4xLTEuMi4xLTIuNC0uMS0zLjYtLjEtMS4yIDAtMi4zLjMtMy41LjQtMS4xLjEtMi4yLjEtMy4zLjEtMS4xIDAtMi4yLS4xLTMuMy0uMy0xLjEtLjItMi4yLS41LTMuMy0uNy0xLjEtLjItMi4zLS4yLTMuNC0uMi0xLjEgMC0yLjEtLjQtMy4xLS43LS45LS4zLTEuOC0uNi0yLjYtMS0uOC0uNC0xLjYtLjgtMi4zLTEuMy0uNy0uNS0xLjQtMS0yLTEuNi0uNi0uNS0xLjEtMS4xLTEuNi0xLjctLjQtLjUtLjgtMS4xLTEuMi0xLjctLjMtLjUtLjYtMS0uOC0xLjYtLjItLjUtLjQtLjktLjUtMS40LS4xLS41LS4yLS45LS4zLTEuNCAwIC0uMiAwIC0uNCAwIC0uNi4yLjMuNC43LjYgMSAuNC43LjkgMS4zIDEuNSAxLjkuNi42IDEuMiAxLjEgMS45IDEuNS43LjQgMS40LjcgMi4yLjkuOC4yIDEuNi4zIDIuNC4yLjggMCAxLjYtLjIgMi40LS40LjgtLjIgMS41LS41IDIuMy0uOC44LS4zIDEuNS0uNyAyLjMtLjkuOC0uMiAxLjYtLjMgMi40LS4zLjggMCAxLjYuMiAyLjQgMCAuNCAwIC44LS4yIDEuMy0uM3oiLz48L2c+PC9zdmc+')]  bg-opacity-5">
+      <section className="py-16 bg-gradient-to-r from-orange-200 to-amber-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-800 mb-4">Our Vision</h2>
@@ -179,4 +180,73 @@ const Development = () => {
       </section>
       
       {/* Timeline Section */}
-      <section className="py-16 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgdmlld0JveD0iMCAwIDYwIDYwIj48ZyBmaWxsPSJub25lIj48cGF0aCBmaWxsPSIjRkZFNUI0IiBkPSJNMzAgNTJjMSAwIDEuOC0uOCAyLjgtMS4xIDEuMi0uNCAyLjQtLjQgMy40LS45czEuOS0xLjUgMy0xLjljMS4yLS40IDIuNC0uMyAzLjYtLjQgMS4yLS4xIDIuMy0uNyAzLjUtLjkgMS40LS4yIDIuOC4yIDQuMi4zLjcuMSAxLjQuMiAyLjEuNGwxLjEuM2MxLjMuMiAyLjYtLjEgMy45LS4yaC4xYy0uMyAxLjEtLjkgMi0xLjUgMi45LS43IDEtMS42IDItMi43IDIuNi0xLjEuNi0yLjQgMS0zLjcgMS4xLTEuMi4xLTIuNC0uMS0zLjYtLjEtMS4yIDAtMi4zLjMtMy
+      <section className="py-16 bg-gradient-to-r from-orange-200 to-amber-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-800 mb-4">Development Timeline</h2>
+            <p className="text-gray-600 max-w-3xl mx-auto">
+              Our project is progressing through several key phases as we work to bring this vision to reality.
+            </p>
+          </div>
+          
+          <div className="space-y-8">
+            <div className="bg-white p-6 rounded-lg shadow-md">
+              <h3 className="text-xl font-semibold text-orange-600 mb-2">Phase 1: Land Acquisition</h3>
+              <p className="text-gray-700">
+                Securing suitable land in a peaceful location with good accessibility for our community.
+              </p>
+            </div>
+            
+            <div className="bg-white p-6 rounded-lg shadow-md">
+              <h3 className="text-xl font-semibold text-orange-600 mb-2">Phase 2: Design & Planning</h3>
+              <p className="text-gray-700">
+                Working with architects and engineers to create designs that reflect our spiritual values and meet practical needs.
+              </p>
+            </div>
+            
+            <div className="bg-white p-6 rounded-lg shadow-md">
+              <h3 className="text-xl font-semibold text-orange-600 mb-2">Phase 3: Fundraising Campaign</h3>
+              <p className="text-gray-700">
+                Engaging with our community and supporters to raise the resources needed for construction.
+              </p>
+            </div>
+            
+            <div className="bg-white p-6 rounded-lg shadow-md">
+              <h3 className="text-xl font-semibold text-orange-600 mb-2">Phase 4: Construction</h3>
+              <p className="text-gray-700">
+                Building the ashram facilities in stages, beginning with the temple and essential infrastructure.
+              </p>
+            </div>
+            
+            <div className="bg-white p-6 rounded-lg shadow-md">
+              <h3 className="text-xl font-semibold text-orange-600 mb-2">Phase 5: Opening & Dedication</h3>
+              <p className="text-gray-700">
+                Celebrating the opening of our new spiritual home with special ceremonies and community events.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      {/* Call to Action */}
+      <section className="py-16 bg-orange-600 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl font-bold mb-6">Support This Sacred Project</h2>
+          <p className="text-xl max-w-3xl mx-auto mb-8">
+            Your contributions of time, skills, and resources can help make this vision a reality. Join us in creating a spiritual landmark for generations to come.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <Button size="lg" variant="secondary" className="font-semibold">
+              Make a Donation
+            </Button>
+            <Button size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-white hover:text-orange-600 font-semibold">
+              Volunteer Your Skills
+            </Button>
+          </div>
+        </div>
+      </section>
+    </Layout>
+  );
+};
+
+export default Development;
