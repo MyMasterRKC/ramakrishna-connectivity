@@ -6,7 +6,7 @@ interface User {
   id: string;
   name: string;
   email: string;
-  // You can add more user properties here when connecting to a real API
+  // You can add more user properties here based on your Laravel API response
 }
 
 interface UserContextType {
@@ -17,83 +17,165 @@ interface UserContextType {
   isLoading: boolean;
 }
 
+// Your Laravel API URL - replace with your actual API URL
+const API_URL = "https://your-laravel-api.com/api";
+
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
-// Modified implementation to make it easier to connect to a real API
 export const UserProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Check for user in localStorage on initial load
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      try {
-        setUser(JSON.parse(storedUser));
-      } catch (error) {
-        console.error("Error parsing stored user:", error);
-        localStorage.removeItem("user");
-      }
+    // Check for existing token on initial load
+    const token = localStorage.getItem("auth_token");
+    if (token) {
+      fetchUserProfile(token);
+    } else {
+      setIsLoading(false);
     }
-    setIsLoading(false);
   }, []);
 
-  // This login function could be replaced with a real API call
+  // Fetch user profile using the stored token
+  const fetchUserProfile = async (token: string) => {
+    try {
+      const response = await fetch(`${API_URL}/user`, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to get user profile");
+      }
+
+      const userData = await response.json();
+      setUser({
+        id: userData.id.toString(),
+        name: userData.name,
+        email: userData.email,
+        // Add any additional user properties here
+      });
+    } catch (error) {
+      console.error("Error fetching user profile:", error);
+      // Clear invalid token
+      localStorage.removeItem("auth_token");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const login = async (email: string, password: string) => {
     setIsLoading(true);
     
     try {
-      // Mock API call - replace with actual API call when ready
-      // Example: const response = await fetch('/api/login', { method: 'POST', body: JSON.stringify({ email, password }) });
-      
-      // Simulate API delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // Simple validation for demo
-      if (email && password.length >= 6) {
-        const newUser = {
-          id: `user-${Date.now()}`,
-          name: email.split('@')[0], // Use part of email as name if not known
-          email,
-        };
-        setUser(newUser);
-        localStorage.setItem("user", JSON.stringify(newUser));
-        return;
-      } else {
-        throw new Error("Invalid credentials");
+      const response = await fetch(`${API_URL}/login`, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email, password })
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Login failed");
       }
+
+      const data = await response.json();
+      
+      // Store the token in localStorage
+      localStorage.setItem("auth_token", data.token);
+      
+      // Set user data from response
+      setUser({
+        id: data.user.id.toString(),
+        name: data.user.name,
+        email: data.user.email,
+        // Add any additional user properties here
+      });
+    } catch (error) {
+      console.error("Login error:", error);
+      throw error;
     } finally {
       setIsLoading(false);
     }
   };
 
-  // This signup function could be replaced with a real API call
   const signup = async (name: string, email: string, password: string) => {
     setIsLoading(true);
     
     try {
-      // Mock API call - replace with actual API call when ready
-      // Example: const response = await fetch('/api/signup', { method: 'POST', body: JSON.stringify({ name, email, password }) });
-      
-      // Simulate API delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // Simple validation for demo
-      if (name && email && password.length >= 6) {
-        // In a real implementation, we'd store the user in a database
-        // For this demo, just simulate success
-        return;
-      } else {
-        throw new Error("Invalid signup data");
+      const response = await fetch(`${API_URL}/register`, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ 
+          name, 
+          email, 
+          password,
+          password_confirmation: password // Laravel typically requires password confirmation
+        })
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Registration failed");
       }
+
+      // Registration successful - Laravel may or may not return a token here
+      // If it returns a token, you can auto-login the user
+      const data = await response.json();
+      
+      if (data.token) {
+        // Auto-login if token is provided
+        localStorage.setItem("auth_token", data.token);
+        setUser({
+          id: data.user.id.toString(),
+          name: data.user.name,
+          email: data.user.email,
+        });
+      }
+      
+      // If token is not provided, user will need to login separately
+    } catch (error) {
+      console.error("Signup error:", error);
+      throw error;
     } finally {
       setIsLoading(false);
     }
   };
 
-  const logout = () => {
-    setUser(null);
-    localStorage.removeItem("user");
+  const logout = async () => {
+    setIsLoading(true);
+    
+    try {
+      const token = localStorage.getItem("auth_token");
+      
+      if (token) {
+        // Call Laravel logout endpoint
+        await fetch(`${API_URL}/logout`, {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          }
+        });
+      }
+    } catch (error) {
+      console.error("Logout error:", error);
+    } finally {
+      // Always clear local user data, even if API call fails
+      localStorage.removeItem("auth_token");
+      setUser(null);
+      setIsLoading(false);
+    }
   };
 
   return (
