@@ -80,7 +80,9 @@ const Navbar = () => {
               <span className="absolute inset-x-0 bottom-0 h-0.5 bg-orange-500 transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"></span>
             </Link>
             <div className="ml-4 flex items-center space-x-4">
-              <Button variant="default" className="bg-orange-600 hover:bg-orange-700 transition-colors duration-300">Donate</Button>
+              <Button asChild variant="default" className="bg-orange-600 hover:bg-orange-700 transition-colors duration-300">
+                <Link to="/donation">Donate</Link>
+              </Button>
               <UserMenu />
             </div>
           </div>
@@ -167,7 +169,9 @@ const Navbar = () => {
             Contact
           </Link>
           <div className="pt-2 pb-1">
-            <Button variant="default" className="w-full bg-orange-600 hover:bg-orange-700 mt-2 mb-2 transition-colors duration-300">Donate</Button>
+            <Button asChild variant="default" className="w-full bg-orange-600 hover:bg-orange-700 mt-2 mb-2 transition-colors duration-300">
+              <Link to="/donation" onClick={() => setIsOpen(false)}>Donate</Link>
+            </Button>
             <div className="flex justify-center">
               <UserMenu />
             </div>
