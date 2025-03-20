@@ -88,6 +88,9 @@ const Navbar = () => {
                 <DropdownMenuItem className="hover:bg-orange-50 focus:bg-orange-50 cursor-pointer">
                   <Link to="/learn#teachings" className="w-full">Teachings & Philosophy</Link>
                 </DropdownMenuItem>
+                <DropdownMenuItem className="hover:bg-orange-50 focus:bg-orange-50 cursor-pointer">
+                  <Link to="/learn/assessment" className="w-full">Assessment</Link>
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
             
@@ -190,6 +193,13 @@ const Navbar = () => {
                 onClick={() => setIsOpen(false)}
               >
                 Teachings & Philosophy
+              </Link>
+              <Link 
+                to="/learn/assessment" 
+                className="text-gray-700 hover:text-orange-600 hover:bg-gray-50 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-300"
+                onClick={() => setIsOpen(false)}
+              >
+                Assessment
               </Link>
             </div>
           </div>

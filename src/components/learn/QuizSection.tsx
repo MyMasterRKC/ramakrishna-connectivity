@@ -19,15 +19,6 @@ const QuizSection = () => {
 
   return (
     <section className="mb-16" id="quizzes">
-      <div className="text-center mb-10">
-        <h2 className="text-3xl font-bold text-gray-800 mb-4">Quiz & Assessment</h2>
-        <div className="w-24 h-1 bg-gradient-to-r from-orange-400 to-orange-600 mx-auto"></div>
-        <p className="mt-4 text-gray-600 max-w-3xl mx-auto">
-          Test your knowledge about the Holy Trinity and track your progress.
-          {!user && " Login to save your quiz results and access all quizzes."}
-        </p>
-      </div>
-
       {user && !selectedQuiz && (
         <div className="bg-orange-50 border border-orange-100 rounded-lg p-4 mb-8 flex items-center justify-between">
           <div className="flex items-center gap-3">

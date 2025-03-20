@@ -2,7 +2,6 @@
 import Layout from "@/components/Layout";
 import LearnPageHeader from "@/components/learn/LearnPageHeader";
 import TeachingsSection from "@/components/learn/TeachingsSection";
-import QuizSection from "@/components/learn/QuizSection";
 import ResourcesSection from "@/components/learn/ResourcesSection";
 import LevelsSection from "@/components/learn/LevelsSection";
 
@@ -14,7 +13,6 @@ const Learn = () => {
         <div id="teachings">
           <TeachingsSection />
         </div>
-        <QuizSection />
         <LevelsSection />
         <ResourcesSection />
       </div>
