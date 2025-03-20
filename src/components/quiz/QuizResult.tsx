@@ -3,11 +3,14 @@ import { BookOpen, RotateCcw } from "lucide-react";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
+import { useUser } from "@/hooks/useUser";
+import { useEffect } from "react";
 
 interface QuizResultProps {
   score: number;
   totalQuestions: number;
   quizTitle: string;
+  quizId: string;
   onReset: () => void;
   onSelectNewQuiz: () => void;
 }
@@ -15,11 +18,20 @@ interface QuizResultProps {
 const QuizResult = ({ 
   score, 
   totalQuestions, 
-  quizTitle, 
+  quizTitle,
+  quizId,
   onReset, 
   onSelectNewQuiz 
 }: QuizResultProps) => {
   const percentage = Math.round((score / totalQuestions) * 100);
+  const { user, addQuizAttempt } = useUser();
+  
+  useEffect(() => {
+    // Save quiz result for logged-in users
+    if (user) {
+      addQuizAttempt(quizId, score, totalQuestions);
+    }
+  }, [user, quizId, score, totalQuestions, addQuizAttempt]);
   
   let message = "";
   if (percentage >= 80) {
@@ -52,6 +64,14 @@ const QuizResult = ({
         <div className="bg-orange-50 p-4 rounded-lg mt-6">
           <p className="text-gray-700">{message}</p>
         </div>
+        
+        {!user && (
+          <div className="bg-blue-50 p-4 rounded-lg border border-blue-100">
+            <p className="text-blue-800 text-sm">
+              <strong>Note:</strong> Login to save your quiz results and track your progress over time.
+            </p>
+          </div>
+        )}
       </CardContent>
       <CardFooter className="flex flex-col sm:flex-row gap-4 justify-center">
         <Button 

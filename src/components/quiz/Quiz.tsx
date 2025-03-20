@@ -78,6 +78,7 @@ const Quiz = ({ quizId, onBack }: QuizProps) => {
           score={correctAnswers}
           totalQuestions={questions.length}
           quizTitle={quizInfo.title}
+          quizId={quizId}
           onReset={handleReset}
           onSelectNewQuiz={onBack}
         />

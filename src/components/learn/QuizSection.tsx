@@ -1,10 +1,12 @@
 
 import { useState } from "react";
-import { BookOpenCheck } from "lucide-react";
+import { BookOpenCheck, History } from "lucide-react";
 import { useUser } from "@/hooks/useUser";
+import { Link } from "react-router-dom";
 import QuizSelector from "@/components/quiz/QuizSelector";
 import Quiz from "@/components/quiz/Quiz";
 import AuthModal from "@/components/auth/AuthModal";
+import { Button } from "@/components/ui/button";
 
 const QuizSection = () => {
   const [selectedQuiz, setSelectedQuiz] = useState<string | null>(null);
@@ -25,6 +27,20 @@ const QuizSection = () => {
           {!user && " Login to save your quiz results and access all quizzes."}
         </p>
       </div>
+
+      {user && !selectedQuiz && (
+        <div className="bg-orange-50 border border-orange-100 rounded-lg p-4 mb-8 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <History className="h-5 w-5 text-orange-600" />
+            <p className="text-gray-700">
+              Your quiz results are saved to your profile. View your progress anytime.
+            </p>
+          </div>
+          <Button asChild variant="outline" className="border-orange-200 text-orange-700 hover:bg-orange-100">
+            <Link to="/dashboard?tab=quizzes">View History</Link>
+          </Button>
+        </div>
+      )}
 
       {selectedQuiz ? (
         <Quiz quizId={selectedQuiz} onBack={() => setSelectedQuiz(null)} />

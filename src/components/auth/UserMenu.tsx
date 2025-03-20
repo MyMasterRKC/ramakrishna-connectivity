@@ -1,10 +1,11 @@
 
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { useUser } from "@/hooks/useUser";
 import { Button } from "@/components/ui/button";
 import AuthModal from "./AuthModal";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { LogOut, User, Award } from "lucide-react";
+import { LogOut, User, Award, LayoutDashboard, History } from "lucide-react";
 import { toast } from "sonner";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
@@ -48,12 +49,28 @@ const UserMenu = () => {
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem className="cursor-pointer">
-              <User className="mr-2 h-4 w-4" />
-              <span>Profile</span>
+              <Link to="/dashboard" className="flex items-center w-full">
+                <LayoutDashboard className="mr-2 h-4 w-4" />
+                <span>Dashboard</span>
+              </Link>
             </DropdownMenuItem>
             <DropdownMenuItem className="cursor-pointer">
-              <Award className="mr-2 h-4 w-4" />
-              <span>Quiz Progress</span>
+              <Link to="/dashboard?tab=profile" className="flex items-center w-full">
+                <User className="mr-2 h-4 w-4" />
+                <span>Profile</span>
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem className="cursor-pointer">
+              <Link to="/dashboard?tab=donations" className="flex items-center w-full">
+                <History className="mr-2 h-4 w-4" />
+                <span>Donation History</span>
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem className="cursor-pointer">
+              <Link to="/dashboard?tab=quizzes" className="flex items-center w-full">
+                <Award className="mr-2 h-4 w-4" />
+                <span>Quiz Progress</span>
+              </Link>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem className="cursor-pointer" onClick={handleLogout}>
