@@ -12,7 +12,6 @@ const DesktopNavMenu = () => {
 
   const learnItems = [
     { to: "/learn", label: "Overview" },
-    { to: "/learn#teachings", label: "Teachings & Philosophy" },
     { to: "/learn/assessment", label: "Assessment" }
   ];
 
