@@ -18,7 +18,7 @@ const QuizSection = () => {
   };
 
   return (
-    <section className="mb-16">
+    <section className="mb-16" id="quizzes">
       <div className="text-center mb-10">
         <h2 className="text-3xl font-bold text-gray-800 mb-4">Quiz & Assessment</h2>
         <div className="w-24 h-1 bg-gradient-to-r from-orange-400 to-orange-600 mx-auto"></div>

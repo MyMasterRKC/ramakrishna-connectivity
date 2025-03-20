@@ -71,10 +71,26 @@ const Navbar = () => {
               New Ashram
               <span className="absolute inset-x-0 bottom-0 h-0.5 bg-orange-500 transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"></span>
             </Link>
-            <Link to="/learn" className="relative text-gray-700 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300 group">
-              Learn
-              <span className="absolute inset-x-0 bottom-0 h-0.5 bg-orange-500 transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"></span>
-            </Link>
+            
+            {/* Learn dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="relative text-gray-700 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300 group flex items-center">
+                  Learn
+                  <ChevronDown className="ml-1 h-4 w-4" />
+                  <span className="absolute inset-x-0 bottom-0 h-0.5 bg-orange-500 transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"></span>
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="bg-white shadow-lg border-orange-100 border">
+                <DropdownMenuItem className="hover:bg-orange-50 focus:bg-orange-50 cursor-pointer">
+                  <Link to="/learn" className="w-full">Overview</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem className="hover:bg-orange-50 focus:bg-orange-50 cursor-pointer">
+                  <Link to="/learn#teachings" className="w-full">Teachings & Philosophy</Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+            
             <Link to="/contact" className="relative text-gray-700 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300 group">
               Contact
               <span className="absolute inset-x-0 bottom-0 h-0.5 bg-orange-500 transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"></span>
@@ -154,13 +170,30 @@ const Navbar = () => {
           >
             New Ashram
           </Link>
-          <Link 
-            to="/learn" 
-            className="text-gray-700 hover:text-orange-600 hover:bg-gray-50 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-300"
-            onClick={() => setIsOpen(false)}
-          >
-            Learn
-          </Link>
+          
+          {/* Mobile Learn Menu */}
+          <div className="space-y-1">
+            <div className="text-gray-700 px-3 py-2 rounded-md text-base font-medium">
+              Learn
+            </div>
+            <div className="pl-6 space-y-1">
+              <Link 
+                to="/learn" 
+                className="text-gray-700 hover:text-orange-600 hover:bg-gray-50 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-300"
+                onClick={() => setIsOpen(false)}
+              >
+                Overview
+              </Link>
+              <Link 
+                to="/learn#teachings" 
+                className="text-gray-700 hover:text-orange-600 hover:bg-gray-50 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-300"
+                onClick={() => setIsOpen(false)}
+              >
+                Teachings & Philosophy
+              </Link>
+            </div>
+          </div>
+          
           <Link 
             to="/contact" 
             className="text-gray-700 hover:text-orange-600 hover:bg-gray-50 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-300"
