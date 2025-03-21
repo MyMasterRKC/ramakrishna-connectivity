@@ -12,6 +12,7 @@ import Services from "./pages/Services";
 import Gallery from "./pages/Gallery";
 import Development from "./pages/Development";
 import Learn from "./pages/Learn";
+import LearnAssessment from "./pages/LearnAssessment";
 import Contact from "./pages/Contact";
 import Donation from "./pages/Donation";
 import DonationSuccess from "./pages/DonationSuccess";
@@ -35,6 +36,7 @@ const App = () => (
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/development" element={<Development />} />
             <Route path="/learn" element={<Learn />} />
+            <Route path="/learn/assessment" element={<LearnAssessment />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/donation" element={<Donation />} />
             <Route path="/donation-success" element={<DonationSuccess />} />
