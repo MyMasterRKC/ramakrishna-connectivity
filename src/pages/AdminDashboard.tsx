@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Layout from "@/components/Layout";
-import { useUser } from "@/hooks/useUser";
+import { useAuth } from "@/hooks/useAuth";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import UserList from "@/components/admin/UserList";
 import QuizPerformance from "@/components/admin/QuizPerformance";
@@ -11,7 +11,7 @@ import { Shield } from "lucide-react";
 
 const AdminDashboard = () => {
   const [selectedUserId, setSelectedUserId] = useState<string | null>(null);
-  const { user, isLoading, isAdmin } = useUser();
+  const { user, isLoading, isAdmin } = useAuth();
   const navigate = useNavigate();
   
   // Redirect if not logged in or not an admin
