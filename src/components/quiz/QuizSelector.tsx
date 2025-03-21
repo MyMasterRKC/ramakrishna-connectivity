@@ -47,6 +47,30 @@ const QuizSelector = ({ onSelectQuiz }: QuizSelectorProps) => {
       icon: <Users className="h-6 w-6 text-orange-500" />,
       questions: 5,
       requiresLogin: false
+    },
+    {
+      id: "vedanta-basics",
+      title: "Vedanta Basics",
+      description: "Test your understanding of the fundamental principles of Vedanta philosophy",
+      icon: <BookOpen className="h-6 w-6 text-orange-500" />,
+      questions: 5,
+      requiresLogin: false
+    },
+    {
+      id: "bhagavad-gita",
+      title: "Bhagavad Gita",
+      description: "Questions about key teachings from the Bhagavad Gita",
+      icon: <BookOpen className="h-6 w-6 text-orange-500" />,
+      questions: 5,
+      requiresLogin: false
+    },
+    {
+      id: "spiritual-practices",
+      title: "Spiritual Practices",
+      description: "Test your knowledge of meditation and spiritual disciplines",
+      icon: <GraduationCap className="h-6 w-6 text-orange-500" />,
+      questions: 5,
+      requiresLogin: true
     }
   ];
 
