@@ -5,13 +5,13 @@ import { useUser } from "@/hooks/useUser";
 import { Button } from "@/components/ui/button";
 import AuthModal from "./AuthModal";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { LogOut, User, Award, LayoutDashboard, History } from "lucide-react";
+import { LogOut, User, Award, LayoutDashboard, History, Shield } from "lucide-react";
 import { toast } from "sonner";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 const UserMenu = () => {
   const [authModalOpen, setAuthModalOpen] = useState(false);
-  const { user, logout } = useUser();
+  const { user, logout, isAdmin } = useUser();
 
   const handleLogout = () => {
     logout();
@@ -48,6 +48,14 @@ const UserMenu = () => {
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
+            {isAdmin() && (
+              <DropdownMenuItem className="cursor-pointer">
+                <Link to="/admin" className="flex items-center w-full">
+                  <Shield className="mr-2 h-4 w-4" />
+                  <span>Admin Dashboard</span>
+                </Link>
+              </DropdownMenuItem>
+            )}
             <DropdownMenuItem className="cursor-pointer">
               <Link to="/dashboard" className="flex items-center w-full">
                 <LayoutDashboard className="mr-2 h-4 w-4" />

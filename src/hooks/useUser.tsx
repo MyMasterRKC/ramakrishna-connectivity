@@ -6,7 +6,7 @@ interface User {
   id: string;
   name: string;
   email: string;
-  // You can add more user properties here based on your Laravel API response
+  role: "user" | "admin";
 }
 
 export interface Donation {
@@ -32,6 +32,8 @@ interface UserContextType {
   isLoading: boolean;
   addDonation: (donation: Omit<Donation, "id" | "date">) => void;
   addQuizAttempt: (quizId: string, score: number, totalQuestions: number) => void;
+  fetchQuizAttempts: (userId?: string) => Promise<QuizAttempt[]>;
+  isAdmin: () => boolean;
 }
 
 // Your Laravel API URL - replace with your actual API URL
@@ -73,7 +75,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
         id: userData.id.toString(),
         name: userData.name,
         email: userData.email,
-        // Add any additional user properties here
+        role: userData.role || "user",
       });
     } catch (error) {
       console.error("Error fetching user profile:", error);
@@ -112,7 +114,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
         id: data.user.id.toString(),
         name: data.user.name,
         email: data.user.email,
-        // Add any additional user properties here
+        role: data.user.role || "user",
       });
     } catch (error) {
       console.error("Login error:", error);
@@ -136,7 +138,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
           name, 
           email, 
           password,
-          password_confirmation: password // Laravel typically requires password confirmation
+          password_confirmation: password
         })
       });
 
@@ -145,8 +147,6 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
         throw new Error(errorData.message || "Registration failed");
       }
 
-      // Registration successful - Laravel may or may not return a token here
-      // If it returns a token, you can auto-login the user
       const data = await response.json();
       
       if (data.token) {
@@ -156,10 +156,9 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
           id: data.user.id.toString(),
           name: data.user.name,
           email: data.user.email,
+          role: "user", // Default role for new users
         });
       }
-      
-      // If token is not provided, user will need to login separately
     } catch (error) {
       console.error("Signup error:", error);
       throw error;
@@ -195,54 +194,99 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
+  // Check if current user is an admin
+  const isAdmin = () => {
+    return user?.role === "admin";
+  };
+
   // Add a donation to the user's history
-  const addDonation = (donation: Omit<Donation, "id" | "date">) => {
+  const addDonation = async (donation: Omit<Donation, "id" | "date">) => {
     if (!user) return;
     
-    // In a real app, this would call your Laravel API
-    // For demo purposes, we'll use localStorage
+    const token = localStorage.getItem("auth_token");
+    if (!token) return;
     
-    const newDonation: Donation = {
-      ...donation,
-      id: `don_${Date.now()}`,
-      date: new Date().toISOString().split('T')[0]
-    };
-    
-    // Get existing donations from localStorage or initialize empty array
-    const existingDonations = JSON.parse(localStorage.getItem(`donations_${user.id}`) || "[]");
-    
-    // Add new donation to the array
-    const updatedDonations = [newDonation, ...existingDonations];
-    
-    // Save updated donations to localStorage
-    localStorage.setItem(`donations_${user.id}`, JSON.stringify(updatedDonations));
-    
-    // Show success message
-    toast.success("Donation recorded successfully");
+    try {
+      // Send donation data to Laravel API
+      const response = await fetch(`${API_URL}/donations`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(donation)
+      });
+      
+      if (!response.ok) {
+        throw new Error("Failed to record donation");
+      }
+      
+      toast.success("Donation recorded successfully");
+    } catch (error) {
+      console.error("Error recording donation:", error);
+      toast.error("Failed to record donation");
+    }
   };
 
   // Add a quiz attempt to the user's history
-  const addQuizAttempt = (quizId: string, score: number, totalQuestions: number) => {
+  const addQuizAttempt = async (quizId: string, score: number, totalQuestions: number) => {
     if (!user) return;
     
-    // In a real app, this would call your Laravel API
-    // For demo purposes, we'll use localStorage
+    const token = localStorage.getItem("auth_token");
+    if (!token) return;
     
-    const newAttempt: QuizAttempt = {
-      quizId,
-      score,
-      totalQuestions,
-      date: new Date().toISOString().split('T')[0]
-    };
+    try {
+      // Send quiz attempt data to Laravel API
+      const response = await fetch(`${API_URL}/quiz-attempts`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          quizId,
+          score,
+          totalQuestions
+        })
+      });
+      
+      if (!response.ok) {
+        throw new Error("Failed to record quiz attempt");
+      }
+    } catch (error) {
+      console.error("Error recording quiz attempt:", error);
+    }
+  };
+
+  // Fetch quiz attempts for a user (or all users if admin)
+  const fetchQuizAttempts = async (userId?: string): Promise<QuizAttempt[]> => {
+    const token = localStorage.getItem("auth_token");
+    if (!token) return [];
     
-    // Get existing attempts from localStorage or initialize empty array
-    const existingAttempts = JSON.parse(localStorage.getItem(`quiz_attempts_${user.id}`) || "[]");
-    
-    // Add new attempt to the array
-    const updatedAttempts = [newAttempt, ...existingAttempts];
-    
-    // Save updated attempts to localStorage
-    localStorage.setItem(`quiz_attempts_${user.id}`, JSON.stringify(updatedAttempts));
+    try {
+      // Admin can fetch all attempts or specific user's attempts
+      const endpoint = userId ? 
+        `${API_URL}/quiz-attempts/${userId}` : 
+        `${API_URL}/quiz-attempts`;
+      
+      const response = await fetch(endpoint, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Accept': 'application/json',
+        }
+      });
+      
+      if (!response.ok) {
+        throw new Error("Failed to fetch quiz attempts");
+      }
+      
+      return await response.json();
+    } catch (error) {
+      console.error("Error fetching quiz attempts:", error);
+      return [];
+    }
   };
 
   return (
@@ -253,7 +297,9 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
       logout, 
       isLoading,
       addDonation,
-      addQuizAttempt
+      addQuizAttempt,
+      fetchQuizAttempts,
+      isAdmin
     }}>
       {children}
     </UserContext.Provider>
