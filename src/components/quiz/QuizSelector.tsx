@@ -1,10 +1,10 @@
-
 import { useState } from "react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { BookOpen, Users, GraduationCap, Lock } from "lucide-react";
 import { useUser } from "@/hooks/useUser";
 import AuthModal from "@/components/auth/AuthModal";
+import { quizData } from "@/data/quizData";
 
 interface QuizTopic {
   id: string;
@@ -23,56 +23,27 @@ const QuizSelector = ({ onSelectQuiz }: QuizSelectorProps) => {
   const [authModalOpen, setAuthModalOpen] = useState(false);
   const { user } = useUser();
 
-  const quizTopics: QuizTopic[] = [
-    {
-      id: "sri-ramakrishna",
-      title: "Sri Ramakrishna",
-      description: "Test your knowledge about the life and teachings of Sri Ramakrishna",
-      icon: <Users className="h-6 w-6 text-orange-500" />,
-      questions: 5,
-      requiresLogin: true
-    },
-    {
-      id: "sri-sarada-devi",
-      title: "Sri Sarada Devi",
-      description: "Questions about Holy Mother Sri Sarada Devi",
-      icon: <Users className="h-6 w-6 text-orange-500" />,
-      questions: 5,
-      requiresLogin: true
-    },
-    {
-      id: "swami-vivekananda",
-      title: "Swami Vivekananda",
-      description: "Learn about the life and philosophy of Swami Vivekananda",
-      icon: <Users className="h-6 w-6 text-orange-500" />,
-      questions: 5,
-      requiresLogin: false
-    },
-    {
-      id: "vedanta-basics",
-      title: "Vedanta Basics",
-      description: "Test your understanding of the fundamental principles of Vedanta philosophy",
-      icon: <BookOpen className="h-6 w-6 text-orange-500" />,
-      questions: 5,
-      requiresLogin: false
-    },
-    {
-      id: "bhagavad-gita",
-      title: "Bhagavad Gita",
-      description: "Questions about key teachings from the Bhagavad Gita",
-      icon: <BookOpen className="h-6 w-6 text-orange-500" />,
-      questions: 5,
-      requiresLogin: false
-    },
-    {
-      id: "spiritual-practices",
-      title: "Spiritual Practices",
-      description: "Test your knowledge of meditation and spiritual disciplines",
-      icon: <GraduationCap className="h-6 w-6 text-orange-500" />,
-      questions: 5,
-      requiresLogin: true
+  const quizTopics: QuizTopic[] = Object.keys(quizData).map(key => {
+    const quiz = quizData[key];
+    
+    let icon = <BookOpen className="h-6 w-6 text-orange-500" />;
+    if (key.includes("sri-") || key.includes("swami-")) {
+      icon = <Users className="h-6 w-6 text-orange-500" />;
+    } else if (key.includes("spiritual-")) {
+      icon = <GraduationCap className="h-6 w-6 text-orange-500" />;
     }
-  ];
+    
+    const requiresLogin = ["sri-ramakrishna", "sri-sarada-devi", "spiritual-practices"].includes(key);
+    
+    return {
+      id: key,
+      title: quiz.title,
+      description: quiz.questions[0].explanation.split(".")[0] + ".", 
+      icon,
+      questions: quiz.questions.length,
+      requiresLogin
+    };
+  });
 
   const handleQuizSelect = (quiz: QuizTopic) => {
     if (quiz.requiresLogin && !user) {
