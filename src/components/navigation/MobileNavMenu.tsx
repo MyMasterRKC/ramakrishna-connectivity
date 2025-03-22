@@ -46,7 +46,8 @@ const MobileNavMenu = ({ isOpen, setIsOpen }: MobileNavMenuProps) => {
 
   const learnItems = [
     { to: "/learn", label: "Overview" },
-    { to: "/learn/assessment", label: "Assessment" }
+    { to: "/learn/assessment", label: "Assessment" },
+    { to: "/learn/games", label: "Games" }
   ];
 
   return (
