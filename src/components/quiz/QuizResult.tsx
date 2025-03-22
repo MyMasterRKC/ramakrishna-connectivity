@@ -3,7 +3,8 @@ import { BookOpen, RotateCcw } from "lucide-react";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { useUser } from "@/hooks/useUser";
+import { useAuth } from "@/hooks/useAuth";
+import { useQuizAttempts } from "@/hooks/useQuizAttempts";
 import { useEffect } from "react";
 
 interface QuizResultProps {
@@ -24,7 +25,8 @@ const QuizResult = ({
   onSelectNewQuiz 
 }: QuizResultProps) => {
   const percentage = Math.round((score / totalQuestions) * 100);
-  const { user, addQuizAttempt } = useUser();
+  const { user } = useAuth();
+  const { addQuizAttempt } = useQuizAttempts();
   
   useEffect(() => {
     // Save quiz result for logged-in users

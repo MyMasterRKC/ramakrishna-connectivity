@@ -1,15 +1,15 @@
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Layout from "@/components/Layout";
-import { useUser } from "@/hooks/useUser";
+import { useAuth } from "@/hooks/useAuth";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import UserProfile from "@/components/user/UserProfile";
 import DonationHistory from "@/components/user/DonationHistory";
 import QuizProgress from "@/components/user/QuizProgress";
 
 const UserDashboard = () => {
-  const { user, isLoading } = useUser();
+  const { user, isLoading } = useAuth();
   const navigate = useNavigate();
   
   // Redirect if not logged in

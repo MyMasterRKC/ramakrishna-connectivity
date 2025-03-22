@@ -4,13 +4,7 @@ import { BookOpen, Trophy, AlertCircle } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { quizData } from "@/data/quizData";
-
-interface QuizAttempt {
-  quizId: string;
-  date: string;
-  score: number;
-  totalQuestions: number;
-}
+import { useQuizAttempts, QuizAttempt } from "@/hooks/useQuizAttempts";
 
 interface QuizProgressProps {
   userId: string;
@@ -18,52 +12,16 @@ interface QuizProgressProps {
 
 const QuizProgress = ({ userId }: QuizProgressProps) => {
   const [quizAttempts, setQuizAttempts] = useState<QuizAttempt[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const { fetchQuizAttempts, isLoading } = useQuizAttempts();
 
   useEffect(() => {
-    const fetchQuizProgress = async () => {
-      try {
-        // In a real app, this would fetch from your Laravel API
-        // const response = await fetch(`${API_URL}/user/quiz-progress`, {
-        //   headers: {
-        //     'Authorization': `Bearer ${localStorage.getItem("auth_token")}`,
-        //     'Accept': 'application/json',
-        //   }
-        // });
-        // const data = await response.json();
-        
-        // For demo purposes, we'll use mock data
-        const mockAttempts: QuizAttempt[] = [
-          {
-            quizId: "trinity-basics",
-            date: "2023-11-15",
-            score: 8,
-            totalQuestions: 10
-          },
-          {
-            quizId: "ramakrishna-teachings",
-            date: "2023-12-05",
-            score: 7,
-            totalQuestions: 10
-          },
-          {
-            quizId: "meditation-101",
-            date: "2024-01-10",
-            score: 9,
-            totalQuestions: 10
-          }
-        ];
-        
-        setQuizAttempts(mockAttempts);
-      } catch (error) {
-        console.error("Error fetching quiz progress:", error);
-      } finally {
-        setIsLoading(false);
-      }
+    const getQuizProgress = async () => {
+      const attempts = await fetchQuizAttempts(userId);
+      setQuizAttempts(attempts);
     };
 
-    fetchQuizProgress();
-  }, [userId]);
+    getQuizProgress();
+  }, [userId, fetchQuizAttempts]);
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);

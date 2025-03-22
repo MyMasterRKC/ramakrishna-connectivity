@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useUser } from "@/hooks/useUser";
+import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import AuthModal from "./AuthModal";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
@@ -11,7 +11,7 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 const UserMenu = () => {
   const [authModalOpen, setAuthModalOpen] = useState(false);
-  const { user, logout, isAdmin } = useUser();
+  const { user, logout, isAdmin } = useAuth();
 
   const handleLogout = () => {
     logout();

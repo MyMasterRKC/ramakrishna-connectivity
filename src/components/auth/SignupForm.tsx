@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
-import { useUser } from "@/hooks/useUser";
+import { useAuth } from "@/hooks/useAuth";
 import { Lock, User, Mail } from "lucide-react";
 
 interface SignupFormProps {
@@ -17,7 +17,7 @@ const SignupForm = ({ onSuccess }: SignupFormProps) => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const { signup } = useUser();
+  const { signup } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

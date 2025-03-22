@@ -1,8 +1,9 @@
+
 import { useState } from "react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { BookOpen, Users, GraduationCap, Lock } from "lucide-react";
-import { useUser } from "@/hooks/useUser";
+import { useAuth } from "@/hooks/useAuth";
 import AuthModal from "@/components/auth/AuthModal";
 import { quizData } from "@/data/quizData";
 
@@ -21,7 +22,7 @@ interface QuizSelectorProps {
 
 const QuizSelector = ({ onSelectQuiz }: QuizSelectorProps) => {
   const [authModalOpen, setAuthModalOpen] = useState(false);
-  const { user } = useUser();
+  const { user } = useAuth();
 
   const quizTopics: QuizTopic[] = Object.keys(quizData).map(key => {
     const quiz = quizData[key];

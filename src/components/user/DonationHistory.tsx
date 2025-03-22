@@ -3,14 +3,7 @@ import { useEffect, useState } from "react";
 import { DollarSign, Calendar, AlertCircle } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-
-interface DonationData {
-  id: string;
-  amount: number;
-  date: string;
-  paymentMethod: string;
-  status: "completed" | "pending" | "failed";
-}
+import { useDonations, Donation as DonationData } from "@/hooks/useDonations";
 
 interface DonationHistoryProps {
   userId: string;
@@ -18,55 +11,16 @@ interface DonationHistoryProps {
 
 const DonationHistory = ({ userId }: DonationHistoryProps) => {
   const [donations, setDonations] = useState<DonationData[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const { fetchDonations, isLoading } = useDonations();
 
   useEffect(() => {
-    const fetchDonations = async () => {
-      try {
-        // In a real app, this would fetch from your Laravel API
-        // const response = await fetch(`${API_URL}/user/donations`, {
-        //   headers: {
-        //     'Authorization': `Bearer ${localStorage.getItem("auth_token")}`,
-        //     'Accept': 'application/json',
-        //   }
-        // });
-        // const data = await response.json();
-        
-        // For demo purposes, we'll use mock data
-        const mockDonations: DonationData[] = [
-          {
-            id: "don_1",
-            amount: 100,
-            date: "2023-10-15",
-            paymentMethod: "Credit Card",
-            status: "completed"
-          },
-          {
-            id: "don_2",
-            amount: 50,
-            date: "2023-11-22",
-            paymentMethod: "PayPal",
-            status: "completed"
-          },
-          {
-            id: "don_3",
-            amount: 75,
-            date: "2024-01-05",
-            paymentMethod: "Credit Card",
-            status: "completed"
-          }
-        ];
-        
-        setDonations(mockDonations);
-      } catch (error) {
-        console.error("Error fetching donations:", error);
-      } finally {
-        setIsLoading(false);
-      }
+    const getDonations = async () => {
+      const donationData = await fetchDonations(userId);
+      setDonations(donationData);
     };
 
-    fetchDonations();
-  }, [userId]);
+    getDonations();
+  }, [userId, fetchDonations]);
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);

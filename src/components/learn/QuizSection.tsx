@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { BookOpenCheck, History } from "lucide-react";
-import { useUser } from "@/hooks/useUser";
+import { useAuth } from "@/hooks/useAuth";
 import { Link } from "react-router-dom";
 import QuizSelector from "@/components/quiz/QuizSelector";
 import Quiz from "@/components/quiz/Quiz";
@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 const QuizSection = () => {
   const [selectedQuiz, setSelectedQuiz] = useState<string | null>(null);
   const [authModalOpen, setAuthModalOpen] = useState(false);
-  const { user } = useUser();
+  const { user } = useAuth();
 
   const handleQuizSelect = (quizId: string) => {
     setSelectedQuiz(quizId);
